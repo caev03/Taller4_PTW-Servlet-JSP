@@ -37,7 +37,7 @@ public class MainServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession();
         Object user = session.getAttribute("user");
         if (user==null) {
             String userName = request.getParameter("userName");
@@ -45,17 +45,12 @@ public class MainServlet extends HttpServlet {
                 session = request.getSession();
                 ServletContext scontx = getServletContext();
                 ArrayList<String> usuarios = (ArrayList<String>)scontx.getAttribute("users");
-                System.out.println(scontx.getAttribute("users"));
-                if(noExisteUsuario(userName, usuarios))
+                if(!noExisteUsuario(userName, usuarios))
                 {
                     usuarios.add(userName);
                     scontx.setAttribute("users", usuarios);
                 }
-                System.out.println(scontx.getAttribute("users"));
                 String[] users = usuarios.toArray(new String[0]);
-                for (int i = 0; i < users.length; i++) {
-                    System.out.println(users[i]);
-                }
                 session.setAttribute("user", userName);
                 request.setAttribute("user", session.getAttribute("user"));
                 RequestDispatcher view = request.getRequestDispatcher("mainPage.jsp");
@@ -106,7 +101,12 @@ public class MainServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
+        String user = (String)session.getAttribute("user");
         session.removeAttribute("user");
+        ServletContext scontx = getServletContext();
+        ArrayList<String> usuarios = (ArrayList<String>)scontx.getAttribute("users");
+        usuarios.remove(user);
+        scontx.setAttribute("users", usuarios);
         response.sendRedirect("index.jsp");
     }
 

@@ -49,14 +49,27 @@
                 </td>
             </tr>
         </table>
-        <button onclick="hide();">Mostar usuarios conectados</button>
-        <p>${users}</p>
-        <ul>
-            <c:forEach var="usuario" items="${applicationScope.users}">
-                <li>${usuario}</li>
-            </c:forEach>
-        </ul>
         <script type="text/javascript" src="websocket.js"></script>
         <script type="text/javascript" src="whiteboard.js"></script>
+        <button onclick="hide()" id="usersssButton">Mostar usuarios conectados</button>
+        <div id="usersss" style="display: none">
+            <ul>
+                <c:forEach var="usuario" items="${applicationScope.users}">
+                    <li>${usuario}</li>
+                    </c:forEach>
+            </ul>
+        </div>
+        <script>
+            var iterador = false;
+            function hide() {
+                if (!iterador)
+                {
+                    document.getElementById("usersss").style.display = "inline";
+                } else {
+                    document.getElementById("usersss").style.display = "none";
+                }
+                iterador = !iterador;
+            }
+        </script>
     </body>
 </html>

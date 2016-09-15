@@ -5,6 +5,7 @@
 
 var canvas = document.getElementById("myCanvas");
 var context = canvas.getContext("2d");
+var iterador = false;
 canvas.addEventListener("click", defineImage, false);
 
 function getCurrentPos(evt) {
