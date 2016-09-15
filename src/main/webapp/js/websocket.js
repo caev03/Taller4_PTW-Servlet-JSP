@@ -2,8 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
-var wsUri = "ws://" + document.location.host + document.location.pathname + "whiteboardendpoint";
+var asdasd= document.location.pathname.valueOf().split("/")[1];
+console.log(document.location.pathname);
+console.log(asdasd);
+var wsUri = "ws://" + document.location.host + "/"+asdasd + "/whiteboardendpoint";
 var websocket = new WebSocket(wsUri);
 websocket.binaryType = "arraybuffer";
 

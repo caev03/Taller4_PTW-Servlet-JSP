@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author caev0
  */
-@WebServlet(name = "MainServlet", urlPatterns = {"/", "/mainController"})
+@WebServlet(name = "MainServlet", urlPatterns = {"", "/mainController"})
 public class MainServlet extends HttpServlet {
 
     /**

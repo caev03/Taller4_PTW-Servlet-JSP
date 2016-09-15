@@ -1,14 +1,14 @@
-<!DOCTYPE html/>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
     <head>
         <title>Start Page</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
         <h1>Collaborative Whiteboard:${user}</h1>
         <form action="mainController" method="POST">
-            <button type="submit" value="Cerrar Sesión">Cerrar Sesión</button>
+            <button type="submit" value="Cerrar SesiÃ³n">Cerrar SesiÃ³n</button>
         </form>
         <table>
             <tr>
@@ -49,8 +49,8 @@
                 </td>
             </tr>
         </table>
-        <script type="text/javascript" src="websocket.js"></script>
-        <script type="text/javascript" src="whiteboard.js"></script>
+        
+        <a id="downloadLnk" download="image.jpg">Download Canvas as JPG</a>
         <button onclick="hide()" id="usersssButton">Mostar usuarios conectados</button>
         <div id="usersss" style="display: none">
             <ul>
@@ -59,17 +59,7 @@
                     </c:forEach>
             </ul>
         </div>
-        <script>
-            var iterador = false;
-            function hide() {
-                if (!iterador)
-                {
-                    document.getElementById("usersss").style.display = "inline";
-                } else {
-                    document.getElementById("usersss").style.display = "none";
-                }
-                iterador = !iterador;
-            }
-        </script>
+        <script type="text/javascript" src="js/websocket.js"></script>
+        <script type="text/javascript" src="js/whiteboard.js"></script>
     </body>
 </html>
